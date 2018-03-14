@@ -1,0 +1,6 @@
+rootProject.name = 'SpringCloudExample'
+include 'service-eureka'
+include 'biz-helloworld'
+include 'service-zuul'
+include 'service-config'
+

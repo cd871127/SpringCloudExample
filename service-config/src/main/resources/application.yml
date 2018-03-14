@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8888
+spring:
+  application:
+    name: service-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: C:\Users\chend\Desktop\SpringCloudExample
+          search-paths: springCloudConfig #配置仓库路径
+          #username:
+          #password:
+      label: master
+      profile: dev
+
+

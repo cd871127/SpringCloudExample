@@ -1,0 +1,67 @@
+group 'com.anthony'
+version '0.0.1'
+
+ext{
+    mavenRepo = "http://maven.aliyun.com/nexus/content/groups/public/"
+}
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+    }
+    repositories {
+        maven{
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+}
+
+//子项目配置
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'application'
+    apply plugin: 'docker'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+
+    }
+
+    group = "paic"
+
+    task buildDocker(type: Docker, dependsOn: build) {
+        push = false
+        applicationName = jar.baseName
+        dockerfile = file('./Dockerfile')
+        doFirst {
+            copy {
+                from jar
+                into stageDir
+            }
+        }
+    }
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+        springCloudVersion = 'Edgware.SR1'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}
