@@ -11,7 +11,7 @@ spring:
     config:
       server:
         git:
-          uri: C:\Users\chend\Desktop\SpringCloudExample\
+          uri: file:///C:/Users/chend/Desktop/SpringCloudExample/
           search-paths: springCloudConfig #配置仓库路径
           #username:
           #password:

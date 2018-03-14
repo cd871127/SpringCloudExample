@@ -8,6 +8,16 @@ spring:
       discovery:
         enabled: true
         serviceId: service-config
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#关闭验证,可以访问/bus/refresh
+management:
+  security:
+    enabled: false
 
 eureka:
   client:
