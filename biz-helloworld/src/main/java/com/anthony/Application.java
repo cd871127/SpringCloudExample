@@ -18,8 +18,12 @@ public class Application {
     @Value("${server.port}")
     String port;
 
+    @Value("${code}")
+    String code;
+
     @RequestMapping("/hello")
     public String helloWorld() {
-        return "helloWorld:" + port;
+
+        return "helloWorld:" + port+code;
     }
 }

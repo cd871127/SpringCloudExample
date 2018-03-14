@@ -3,7 +3,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 8888
+  port: 8762
 spring:
   application:
     name: service-config
@@ -11,7 +11,7 @@ spring:
     config:
       server:
         git:
-          uri: C:\Users\chend\Desktop\SpringCloudExample
+          uri: C:\Users\chend\Desktop\SpringCloudExample\
           search-paths: springCloudConfig #配置仓库路径
           #username:
           #password:
