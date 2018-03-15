@@ -4,4 +4,5 @@ include 'biz-helloworld'
 include 'service-zuul'
 include 'service-config'
 include 'service-zipkin'
+include 'biz-dosth'
 

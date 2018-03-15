@@ -1,0 +1,6 @@
+server:
+  port: 8764
+spring:
+  sleuth:
+    sampler:
+      percentage: 1
