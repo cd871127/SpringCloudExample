@@ -7,7 +7,8 @@ ext{
 
 buildscript {
     ext {
-        springBootVersion = '1.5.10.RELEASE'
+        springBootVersion = '1.5.9.RELEASE'
+        springBootGradlePluginVersion='2.0.0.RELEASE'
     }
     repositories {
         maven{
@@ -54,8 +55,8 @@ subprojects {
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     ext {
-        springBootVersion = '1.5.10.RELEASE'
-        springCloudVersion = 'Edgware.SR1'
+        springBootVersion = '1.5.9.RELEASE'
+        springCloudVersion = 'Edgware.SR2'
     }
 
     dependencyManagement {
