@@ -1,15 +1,35 @@
-server:
-  port: 8761
+spring:
+  application:
+    name: eureka-cluster
+  profiles:
+    active: node1
+    include: common
 
+server:
+  port: ${eureka.node.port}
+security:
+  user:  #eureka账号密码
+    name: ${eureka.node.security.username}
+    password: ${eureka.node.security.password}
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${eureka.node.instance.hostname}
+    #优先使用ip作为标识
+    prefer-ip-address: true
+    #注册名字
+#    appname: ${spring.application.name}
 #    leaseRenewalIntervalInSeconds: 1
 #    leaseExpirationDurationInSeconds: 2
-#  server:
-#    enableSelfPreservation: false
+
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    #是否向服务注册中心注册自己
+    register-with-eureka: false
+    #是否检索服务
+    fetch-registry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #服务注册中心的配置内容，指定服务注册中心的位置
+      defaultZone: ${all-node.defaultZone}
+  server:
+    #自我保护 需要客户端有容错机制
+    enable-self-preservation: true
+

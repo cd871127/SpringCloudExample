@@ -1,0 +1,6 @@
+
+node:
+  server:
+    port: 9012
+
+

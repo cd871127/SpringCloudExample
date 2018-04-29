@@ -1,5 +1,9 @@
-group 'com.anthony'
+
 version '0.0.1'
+
+allprojects {
+    group 'com.anthony'
+}
 
 ext{
     mavenRepo = "http://maven.aliyun.com/nexus/content/groups/public/"
@@ -7,8 +11,7 @@ ext{
 
 buildscript {
     ext {
-        springBootVersion = '1.5.9.RELEASE'
-        springBootGradlePluginVersion='2.0.0.RELEASE'
+        springBootVersion = '1.5.10.RELEASE'
     }
     repositories {
         maven{
@@ -55,13 +58,20 @@ subprojects {
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     ext {
-        springBootVersion = '1.5.9.RELEASE'
-        springCloudVersion = 'Edgware.SR2'
+        springBootVersion = '1.5.10.RELEASE'
+        springCloudVersion = 'Edgware.SR3'
     }
 
     dependencyManagement {
         imports {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
+    }
+
+    dependencies {
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
     }
 }

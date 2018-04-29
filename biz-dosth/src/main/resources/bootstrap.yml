@@ -1,31 +1,13 @@
 spring:
   application:
     name: biz-dosth
-  cloud:
-    config:
-      label: master
-      profile: dev
-      discovery:
-        enabled: true
-        serviceId: service-config
-  zipkin:
-    base-url: http://localhost:8764
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
-#关闭验证,可以访问/bus/refresh
-management:
-  security:
-    enabled: false
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://admin:123456@localhost:9001/eureka/
 
 server:
-  port: 8882
+  port: 9013
 
