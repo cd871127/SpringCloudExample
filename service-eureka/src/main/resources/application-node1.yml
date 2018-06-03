@@ -1,9 +1,0 @@
-eureka:
-  node:
-    port: 9001
-    instance:
-      hostname: localhost
-    security:
-      username: admin
-      password: 123456
-    appname: eureka-node1

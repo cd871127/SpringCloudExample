@@ -2,7 +2,6 @@ group 'com.anthony'
 version '0.0.1'
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
-    compile('org.springframework.cloud:spring-cloud-starter-zuul')
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
 }

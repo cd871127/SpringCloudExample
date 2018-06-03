@@ -1,0 +1,7 @@
+peer:
+  username: admin
+  password: 123
+  port: 9001
+  hostname: localhost
+  defaultZone: http://admin:123@localhost:9001/eureka/,http://admin:123@localhost:9002/eureka/
+

@@ -1,65 +1,35 @@
-
+group 'io.github.cd871127'
 version '0.0.1'
 
-allprojects {
-    group 'com.anthony'
-}
-
-ext{
-    mavenRepo = "http://maven.aliyun.com/nexus/content/groups/public/"
-}
-
 buildscript {
-    ext {
-        springBootVersion = '1.5.10.RELEASE'
-    }
     repositories {
-        maven{
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        maven {
+            url aliyunMevenRepo
         }
+
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'se.transmode.gradle:gradle-docker:1.2'
     }
 }
 
-//子项目配置
-subprojects {
 
+
+subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
-    apply plugin: 'docker'
+    apply plugin: "io.spring.dependency-management"
 
     sourceCompatibility = 1.8
 
     repositories {
         maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            url aliyunMevenRepo
         }
-
-    }
-
-    group = "paic"
-
-    task buildDocker(type: Docker, dependsOn: build) {
-        push = false
-        applicationName = jar.baseName
-        dockerfile = file('./Dockerfile')
-        doFirst {
-            copy {
-                from jar
-                into stageDir
-            }
+        maven {
+            url 'https://repo.spring.io/libs-milestone/'
         }
-    }
-
-    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
-
-    ext {
-        springBootVersion = '1.5.10.RELEASE'
-        springCloudVersion = 'Edgware.SR3'
     }
 
     dependencyManagement {
@@ -67,11 +37,24 @@ subprojects {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+
+
 
     dependencies {
+
         // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
-        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 
         testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}
+
+//以biz开头的项目
+configure(allprojects.findAll { it.name.startsWith('biz') }) {
+    dependencies {
+        compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+        compile('org.springframework.cloud:spring-cloud-starter-openfeign')
     }
 }

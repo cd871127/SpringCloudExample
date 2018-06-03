@@ -1,2 +1,0 @@
-all-node:
-  defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:9001/eureka/,http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:9002/eureka/

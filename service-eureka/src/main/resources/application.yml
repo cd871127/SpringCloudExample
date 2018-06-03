@@ -1,26 +1,26 @@
+server:
+  port: ${peer.port}
+
 spring:
   application:
     name: eureka-cluster
   profiles:
-    active: node1
-    include: common
+    active: peer2
+#    include: common
+  security:
+    user:  #eureka账号密码
+      name: ${peer.username}
+      password: ${peer.password}
 
-server:
-  port: ${eureka.node.port}
-security:
-  user:  #eureka账号密码
-    name: ${eureka.node.security.username}
-    password: ${eureka.node.security.password}
 eureka:
   instance:
-    hostname: ${eureka.node.instance.hostname}
+    hostname: ${peer.hostname}
     #优先使用ip作为标识
     prefer-ip-address: true
     #注册名字
 #    appname: ${spring.application.name}
 #    leaseRenewalIntervalInSeconds: 1
 #    leaseExpirationDurationInSeconds: 2
-
   client:
     #是否向服务注册中心注册自己
     register-with-eureka: false
@@ -28,8 +28,9 @@ eureka:
     fetch-registry: false
     serviceUrl:
       #服务注册中心的配置内容，指定服务注册中心的位置
-      defaultZone: ${all-node.defaultZone}
+      defaultZone: ${peer.defaultZone}
   server:
     #自我保护 需要客户端有容错机制
     enable-self-preservation: true
+
 

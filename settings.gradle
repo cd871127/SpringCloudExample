@@ -6,4 +6,5 @@ include 'service-config'
 include 'service-zipkin'
 include 'biz-dosth'
 include 'service-common'
+include 'biz-auth'
 
